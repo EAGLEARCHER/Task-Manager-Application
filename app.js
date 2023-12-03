@@ -1,7 +1,8 @@
 const express = require("express");
 require("dotenv").config();
-const port = process.env.PORT;
 const taskRoutes = require('./routes/taskRoutes');
+const database = require('./db/connect');
+const port = process.env.PORT;
 const app = express();
 // middleware
 
