@@ -36,7 +36,6 @@ const updateTask = async (taskName, taskCompleted) => {
     const taskID = data._id;
     const name = data.name;
     const completed = data.completed;
-    
     taskIDDOM.textContent = taskID;
     console.log(5);
     taskNameDOM.value = name;
