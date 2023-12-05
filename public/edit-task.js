@@ -12,15 +12,13 @@ let tempName;
 const showTask = async () => {
   try {
     const response = await axios.get(`/api/tasks/${id}`);
-    console.log(1);
+    
     const { data } = response;
-    const taskID = data.tasks._id;
-    const taskName = data.tasks.name;
-    const { completed } = data; // Updated destructuring assignment
-    console.log(3);
+    const { _id: taskID, name: taskName, completed } = data.tasks;
+    // const { completed } = data;
     taskIDDOM.textContent = taskID;
     taskNameDOM.value = taskName;
-    tempName = name;
+    tempName = taskName;
     taskCompletedDOM.checked = completed;
   } catch (error) {
     console.error(error);
@@ -33,13 +31,20 @@ const updateTask = async (taskName, taskCompleted) => {
       name: taskName,
       completed: taskCompleted,
     });
-    const { task } = response.data;
-    const { _id: taskID, completed, name } = task;
-
+    const {data} = response;
+    console.log(data);
+    const taskID = data._id;
+    const name = data.name;
+    const completed = data.completed;
+    
     taskIDDOM.textContent = taskID;
+    console.log(5);
     taskNameDOM.value = name;
+    console.log(6);
     tempName = name;
+    console.log(7);
     taskCompletedDOM.checked = completed;
+    console.log(8);
 
     formAlertDOM.style.display = "block";
     formAlertDOM.textContent = `Success, edited task`;
